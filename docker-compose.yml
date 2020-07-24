@@ -1,0 +1,46 @@
+version: '3'
+
+services:
+  server:
+    container_name: server
+    build: project/server
+    expose:
+      - 5000
+    command: ["flask", "run", "--host=0.0.0.0"]
+    volumes:
+      - ./project/server:/backend
+    environment:
+      - FLASK_ENV=development
+      - FLASK_APP=app.py
+    ports:
+      - 5000:5000
+    depends_on:
+      - start-celery-mq
+
+  start-celery-mq:
+    build: project/server
+    command: ["celery", "worker", "-A", "app.celery" , "--loglevel=debug"]
+    depends_on:
+      - rabbitmq
+      - beat
+
+  rabbitmq:
+    image: rabbitmq:3.7.15
+    hostname: rabbitmq
+    ports:
+      - "5672:5672"
+
+  beat:
+    build: project/server
+    command: ["celery", "-A", "app.celery" , "beat"]
+
+  mongodb:
+    image: mongo
+    container_name: "mongodb"
+    volumes:
+      - ./data/db:/data/db
+    ports:
+      - 27017:27017
+
+volumes:
+  node-modules:

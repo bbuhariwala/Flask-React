@@ -1,0 +1,6 @@
+simple-salesforce
+flask_jwt_extended
+pymongo
+celery
+flask_login
+Flask==1.0.2
