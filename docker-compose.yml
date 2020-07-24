@@ -42,5 +42,19 @@ services:
     ports:
       - 27017:27017
 
+  client:
+    build: project
+    stdin_open: true
+    command: ["npm", "start"]
+    volumes:
+      - ./project:/frontend
+      - node-modules:/frontend/node_modules
+    environment:
+      - NODE_ENV=development
+    ports:
+      - 3000:3000
+    depends_on:
+      - server
+
 volumes:
   node-modules:
