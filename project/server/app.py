@@ -57,7 +57,7 @@ def connectToDB():
         db = client[DB_NAME]
         collection = db[COLLECTION_NAME]
         args = {}
-        args['name'] = 'Behram'
+        args['name'] = 'Dummy'
         collection.insert_one(args)
         documents = collection.find({})
         for document in documents:
