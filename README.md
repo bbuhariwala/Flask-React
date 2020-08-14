@@ -9,3 +9,24 @@ This repository ONLY contains a Flask-React boilerplate code containerised in a 
 [MongoDB](https://www.mongodb.com/) MongoDB is a general purpose, document-based, distributed database built for modern application developers.
 
 [React](https://reactjs.org/) A JavaScript library for building user interfaces
+
+#Steps to Run
+
+1. Create a folder 
+```
+mkdir flaskreact
+cd flaskreact
+```
+
+2. Download or clone this repository
+
+3. Add your dependencies in the requirements.txt file in the server folder and package.json file (For node libraries)
+
+4. Run the following commands from the root path of the folder we created above:
+
+```
+docker-compose build
+docker-compose up
+```
+
+5. Go to http://localhost:3000 in your browser
