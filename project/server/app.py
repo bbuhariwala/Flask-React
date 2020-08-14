@@ -1,6 +1,5 @@
 from flask import Flask, jsonify
 import time
-from simple_salesforce import Salesforce, exceptions
 from celery import Celery
 from celery.schedules import crontab
 from pymongo import MongoClient
